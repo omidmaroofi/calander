@@ -1,0 +1,26 @@
+.container{
+    display: grid;
+    grid-template-columns: repeat(7,minmax(100px,1fr));
+    grid-template-rows: 100px;
+    gap: 2px;
+}
+
+.container{
+    padding: 30px;
+    font-size: 20px;
+    color: rgb(0, 0, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #dbd7d7;
+    border: (solid 10px #1a1dca);
+}
+
+.container>div.week{
+    background-color: #f3f3f3;
+}
+
+.week{
+    padding: 10px;
+    /* height: 10px; */
+}
