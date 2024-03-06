@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Calendar.js - Translation</title>
+    <link rel="stylesheet" href="dist/css/styles.css">
+    <link rel="stylesheet" href="dist/css/calendar.js.css">
+    <script src="dist/src/calendar.js"></script>
+    <script src="/dist/translations/calendar.translations.fa.js"></script>
+</head>
+
+<body dir="rtl">
+    <script>const hijriConverter = require('hijri-converter');</script>
+    <div class="contents">
+        <div id="calendar"></div>
+    </div>
+</body>
+
+<script>
+    var calendarInstance = new calendarJs("calendar", __TRANSLATION_OPTIONS);
+
+    document.title += " v" + calendarInstance.getVersion();
+    document.getElementById("header").innerText += " - v" + calendarInstance.getVersion();
+</script>
+
+</html>
