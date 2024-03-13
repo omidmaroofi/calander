@@ -459,7 +459,7 @@ if (fa) {
         : false;
 
       buildLayout(fullRebuild, forceRefreshViews);
-    }  
+    }
 
     /*
      * ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1546,219 +1546,6 @@ if (fa) {
      * Build Widget Mode
      * ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
      */
-
-    function buildWidgetMode() {
-      clearAutoRefreshTimer();
-
-      _element_Calendar.innerHTML = _string.empty;
-
-      var weekDayNumber = getWeekdayNumber(_calendar_CurrentDate);
-
-      var dayName = createElement("div", "day-name");
-      setNodeText(dayName, _options.dayNames[weekDayNumber]);
-      _element_Calendar.appendChild(dayName);
-
-      buildToolbarButton(
-        dayName,
-        "ib-arrow-right-full",
-        _options.nextDayTooltipText,
-        onNextWidgetDay
-      );
-      buildToolbarButton(
-        dayName,
-        "ib-arrow-left-full",
-        _options.previousDayTooltipText,
-        onPreviousWidgetDay
-      );
-
-      dayName.appendChild(createElement("div", "right-divider-line"));
-
-      if (_options.manualEditingEnabled) {
-        buildToolbarButton(
-          dayName,
-          "ib-plus",
-          _options.addEventTooltipText,
-          function () {
-            showEventEditingDialog(null, new Date(_calendar_CurrentDate));
-          }
-        );
-      }
-
-      buildToolbarButton(
-        dayName,
-        "ib-pin",
-        _options.todayTooltipText,
-        onCurrentWidgetDay
-      );
-
-      var dayDate = createElement("div", "day-date");
-      buildDateTimeDisplay(dayDate, _calendar_CurrentDate, false, true, false);
-      _element_Calendar.appendChild(dayDate);
-
-      buildWidgetModeEvents();
-      startAutoRefreshTimer();
-    }
-
-    function buildWidgetModeEvents() {
-      var events = createElement("div", "events custom-scroll-bars"),
-        orderedEvents = [];
-
-      _element_Calendar.appendChild(events);
-
-      getFullDayViewOrderedEvents(_calendar_CurrentDate, orderedEvents);
-
-      orderedEvents = getOrderedEvents(orderedEvents);
-
-      var orderedEventsLength = orderedEvents.length;
-
-      if (orderedEventsLength > 0) {
-        for (
-          var orderedEventIndex = 0;
-          orderedEventIndex < orderedEventsLength;
-          orderedEventIndex++
-        ) {
-          buildWidgetModeEvent(events, orderedEvents[orderedEventIndex]);
-        }
-      } else {
-        createTextHeaderElement(events, _options.noEventsAvailableFullText);
-      }
-    }
-
-    function buildWidgetModeEvent(events, eventDetails) {
-      var event = createElement("div", "event");
-      events.appendChild(event);
-
-      setEventClassesAndColors(
-        event,
-        eventDetails,
-        getToTimeWithPassedDate(eventDetails, _calendar_CurrentDate)
-      );
-      setEventCustomTriggers(event, eventDetails);
-
-      event.id = _element_ID_Event_Widget_Day + eventDetails.id;
-      event.setAttribute("event-type", getNumber(eventDetails.type));
-      event.setAttribute("event-id", eventDetails.id);
-      event.setAttribute("event-is-all-day", eventDetails.isAllDay);
-
-      if (!fireCustomTrigger("onWidgetEventRender", event, eventDetails)) {
-        var title = createElement("div", "title"),
-          repeatEvery = getNumber(eventDetails.repeatEvery);
-
-        if (repeatEvery > _enum_RepeatType.never) {
-          var icon = createElement(
-            "div",
-            "ib-refresh-medium ib-no-hover ib-no-active"
-          );
-          icon.style.borderColor = event.style.color;
-          title.appendChild(icon);
-        }
-
-        title.innerHTML += stripHTMLTagsFromText(eventDetails.title);
-        event.appendChild(title);
-
-        var startTime = createElement("div", "date");
-        event.appendChild(startTime);
-
-        var duration = createElement("div", "duration");
-        event.appendChild(duration);
-
-        if (eventDetails.from.getDate() === eventDetails.to.getDate()) {
-          if (eventDetails.isAllDay) {
-            buildDayDisplay(
-              startTime,
-              eventDetails.from,
-              null,
-              " - " + _options.allDayText
-            );
-          } else {
-            buildDayDisplay(
-              startTime,
-              eventDetails.from,
-              null,
-              " - " + getTimeToTimeDisplay(eventDetails.from, eventDetails.to)
-            );
-            setNodeText(
-              duration,
-              getFriendlyTimeBetweenTwoDate(eventDetails.from, eventDetails.to)
-            );
-          }
-        } else {
-          buildDateTimeToDateTimeDisplay(
-            startTime,
-            eventDetails.from,
-            eventDetails.to
-          );
-          setNodeText(
-            duration,
-            getFriendlyTimeBetweenTwoDate(eventDetails.from, eventDetails.to)
-          );
-        }
-
-        if (duration.innerHTML === _string.empty) {
-          event.removeChild(duration);
-        }
-
-        if (
-          isDefinedNumber(eventDetails.repeatEvery) &&
-          eventDetails.repeatEvery > _enum_RepeatType.never
-        ) {
-          var repeats = createElement("div", "repeats");
-          setNodeText(
-            repeats,
-            _options.repeatsText.replace(":", _string.empty) +
-              _string.space +
-              getRepeatsText(eventDetails.repeatEvery)
-          );
-          event.appendChild(repeats);
-        }
-
-        if (isDefinedStringAndSet(eventDetails.location)) {
-          var location = createElement("div", "location");
-          setNodeText(location, eventDetails.location);
-          event.appendChild(location);
-        }
-
-        if (isDefinedStringAndSet(eventDetails.description)) {
-          var description = createElement("div", "description");
-          setNodeText(description, eventDetails.description);
-          event.appendChild(description);
-        }
-      }
-
-      if (
-        events.scrollHeight > events.clientHeight &&
-        events.className.indexOf(" scroll-margin") === -1
-      ) {
-        events.className += " scroll-margin";
-      }
-    }
-
-    function onCurrentWidgetDay(e) {
-      cancelBubble(e);
-      build();
-    }
-
-    function onNextWidgetDay(e) {
-      cancelBubble(e);
-
-      var nextDay = new Date(_calendar_CurrentDate);
-      nextDay.setDate(nextDay.getDate() + 1);
-
-      if (nextDay.getFullYear() <= _options.maximumYear) {
-        build(nextDay);
-      }
-    }
-
-    function onPreviousWidgetDay(e) {
-      cancelBubble(e);
-
-      var previousDay = new Date(_calendar_CurrentDate);
-      previousDay.setDate(previousDay.getDate() - 1);
-
-      if (previousDay.getFullYear() >= _options.minimumYear) {
-        build(previousDay);
-      }
-    }
 
     /*
      * ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -4938,8 +4725,9 @@ if (fa) {
         }
       }
 
+      // تغییر سال میلادی به شمسی
       var year = getElementByID(
-        _element_ID_YearSelected + _calendar_CurrentDate.getFullYear()
+        _element_ID_YearSelected + _jy
       );
       if (year !== null) {
         year.className += " year-selected";
@@ -17966,12 +17754,12 @@ if (fa) {
       _options.initialDateTime = getDefaultDate(_options.initialDateTime, null);
       _options.events = getDefaultArray(_options.events, null);
       _options.weekendDays = isInvalidOptionArray(_options.weekendDays, 0)
-        ? [0, 6]
+        ? []
         : _options.weekendDays;
       _options.workingDays = isInvalidOptionArray(_options.workingDays, 0)
         ? []
         : _options.workingDays;
-      _options.minimumYear = getDefaultNumber(_options.minimumYear, 1900);
+      _options.minimumYear = getDefaultNumber(_options.minimumYear, 1300);
       _options.maximumYear = getDefaultNumber(_options.maximumYear, 2099);
       _options.defaultEventDuration = getDefaultNumber(
         _options.defaultEventDuration,
