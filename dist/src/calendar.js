@@ -4548,8 +4548,7 @@ if (fa) {
         _element_View_FullMonth_TitleBar_YearSelector_DropDown
       );
 
-      _element_View_FullMonth_TitleBar_YearSelector_DropDown_Text =
-        createElement("span");
+      _element_View_FullMonth_TitleBar_YearSelector_DropDown_Text = createElement("span");
       _element_View_FullMonth_TitleBar_YearSelector_DropDown.appendChild(
         _element_View_FullMonth_TitleBar_YearSelector_DropDown_Text
       );
@@ -4682,7 +4681,7 @@ if (fa) {
         today = new Date();
 
       if (_calendar_CurrentDate.getFullYear() === today.getFullYear()) {
-        var currentMonthNumber = today.getMonth().toString();
+        var currentMonthNumber = (today.getMonth() + 9).toString();
 
         if (
           _element_View_FullMonth_TitleBar_YearSelector_Contents_Months.hasOwnProperty(
@@ -4726,9 +4725,7 @@ if (fa) {
       }
 
       // تغییر سال میلادی به شمسی
-      var year = getElementByID(
-        _element_ID_YearSelected + _jy
-      );
+      var year = getElementByID(_element_ID_YearSelected + _jy);
       if (year !== null) {
         year.className += " year-selected";
       }
@@ -4929,7 +4926,7 @@ if (fa) {
           dayIsToday =
             actualDay === today.getDate() &&
             year === today.getFullYear() &&
-            month === today.getMonth(),
+            month === today.getMonth() + 9,
           dayText = createElement("span"),
           dayDate = new Date(year, month, actualDay),
           dayMutedClass = isMuted ? " day-muted" : _string.empty,
@@ -12294,7 +12291,7 @@ if (fa) {
         date !== null &&
         date.getDate() === today.getDate() &&
         date.getFullYear() === today.getFullYear() &&
-        date.getMonth() === today.getMonth()
+        date.getMonth() === today.getMonth() + 9
       );
     }
 
@@ -12303,7 +12300,7 @@ if (fa) {
 
       return (
         date.getFullYear() === today.getFullYear() &&
-        date.getMonth() === today.getMonth()
+        date.getMonth() === today.getMonth() + 9
       );
     }
 
@@ -12608,6 +12605,10 @@ if (fa) {
         "{y}",
         parseInt(date.getFullYear().toString().substring(2)).toString()
       );
+
+      
+
+
 
       return result;
     }
@@ -16446,7 +16447,7 @@ if (fa) {
         var today = new Date();
 
         if (
-          _calendar_CurrentDate.getMonth() !== today.getMonth() ||
+          _calendar_CurrentDate.getMonth() !== today.getMonth() + 9 ||
           _calendar_CurrentDate.getFullYear() !== today.getFullYear()
         ) {
           build();
