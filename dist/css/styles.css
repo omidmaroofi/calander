@@ -1,7 +1,9 @@
 body {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'B Yekan', sans-serif;
+    /* font-family: 'Roboto', arial; */
     margin: 0;
-    background-color: #DDDDDD !important;
+    background-color: #FFFFFF !important;
+    direction: rtl;
 }
 
 a,
@@ -10,8 +12,8 @@ a:visited {
 }
 
 div.header {
-    background-color: #AAAAAA !important;
-    color: black !important;
+    background-color: #F1F1F1 !important;
+    color: #000000 !important;
     padding: 10px !important;
     border-bottom: 1px black solid !important;
     margin-block-start: 0 !important;
