@@ -16,7 +16,7 @@ console.log(jalaaliDate)
 ```
 
 ```markdown
-************\*\*\*\*************\*\*************\*\*\*\************* start day
+start day
 ```
 
 ```javascript
@@ -27,7 +27,7 @@ console.log(jalaaliDate)
 ```
 
 ```markdown
-************\*\*\*\*************\*\*************\*\*\*\************* shamsi
+shamsi
 ```
 
 ```javascript
@@ -88,7 +88,7 @@ console.log(formattedDate)
 ```
 
 ```markdown
-************\*\*\*\*************\*\*************\*\*\*\************* line:469
+line:469
 ```
 
 ```javascript
@@ -109,7 +109,7 @@ console.log(jy, jm, jd)
 ```
 
 ```markdown
-************\*\*\*\*************\*\*************\*\*\*\************* line:4682
+line:4682
 ```
 
 ```javascript
@@ -132,7 +132,9 @@ var formattedJalaliDate = formatJalaliDate(jalaliDate.jy, jalaliDate.jm)
 console.log(formattedJalaliDate)
 ```
 
+```markdown
 تحلیل کدهای calendar.js
+```
 
 ```javascript
 // نمایش تایتل تقویم (خط 12573)
