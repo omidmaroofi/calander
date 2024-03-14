@@ -28,15 +28,13 @@ firstRender = !\_initialized_FirstTime;
 ```markdown
 *****************************************************************************shamsi
 ```
-// Convert Gregorian date to Jalali (Shamsi)
 ```javascript
+// Convert Gregorian date to Jalali (Shamsi)
 function gregorianToJalali(gy, gm, gd) {
 return toJalaali(gy, gm, gd);
 }
-```
 
 // Convert Jalali (Shamsi) date to formatted string
-```javascript
 function formatJalaliDate(jy, jm) {
 var monthNames = [
 "فروردین",
@@ -54,15 +52,11 @@ var monthNames = [
 ];
 return jy + " " + monthNames[jm - 1];
 }
-```
 
 // Given Gregorian date
-```javascript
 var gregorianDate = "11 مارس";
-```
 
 // Parse Gregorian date
-```javascript
 var parts = gregorianDate.split(" ");
 var day = parseInt(parts[0]);
 var monthName = parts[1];
@@ -81,19 +75,13 @@ var monthNames = [
 "اسفند"
 ];
 var monthIndex = monthNames.indexOf(monthName) + 1;
-```
 
 // Convert to Jalali (Shamsi)
-```javascript
 var jalaliDate = gregorianToJalali(2024, monthIndex, day);
-```
 
 // Format Jalali (Shamsi) date
-```javascript
 var formattedDate = formatJalaliDate(jalaliDate.jy, jalaliDate.jm);
-```
 // Output formatted date
-```javascript
 console.log(formattedDate);
 ```
 
@@ -118,7 +106,7 @@ console.log(jy, jm, jd);
 
 
 ```markdown
-********************************************************************line:4682
+**********************************************************line:4682
 ```
 ```javascript
 // تبدیل میلادی به شمسی
