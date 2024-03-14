@@ -132,12 +132,11 @@ var formattedJalaliDate = formatJalaliDate(jalaliDate.jy, jalaliDate.jm)
 console.log(formattedJalaliDate)
 ```
 
-```markdown
 تحلیل کدهای calendar.js
-```
+
+نمایش تایتل تقویم (خط 12573)
 
 ```javascript
-// نمایش تایتل تقویم (خط 12573)
 function getCustomFormattedDateText(dateFormat, date) {
   var result = dateFormat,
     weekDayNumber = getWeekdayNumber(date)
