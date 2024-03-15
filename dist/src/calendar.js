@@ -12638,9 +12638,13 @@ if (fa) {
         "{y}",
         parseInt(date.getFullYear().toString().substring(2)).toString()
       )
-      result = formatJalaliDate(_jy, _jm)
-      console.log(result)
-      return result
+      
+      if(date.getFullYear()>2000){
+        result = formatJalaliDate(_jy, _jm)
+        return result
+      } else{
+        return result
+      }
     }
 
     function getStartOfWeekDayNumber(dayNumber) {
