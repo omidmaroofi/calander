@@ -1,6 +1,6 @@
 let fa = true
 let en = false
-jalaliDatepicker.startWatch({ time: true });
+jalaliDatepicker.startWatch({ time: false, zIndex: 10000 });
 
 if (fa) {
   function calendarJs(elementOrId, options, searchOptions) {
