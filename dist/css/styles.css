@@ -1,11 +1,40 @@
-body {
-    font-family: 'B Yekan', sans-serif;
-    /* font-family: 'Roboto', arial; */
+@font-face {
+    font-family: 'iran-sans';
+    src: url("./fonts/sans-light/IRANSans.woff") format('WOFF');
+    font-weight: normal;
+}
+@font-face {
+    font-family: 'b-yekan';
+    src: url("./fonts/yekan/Yekan.woff") format('WOFF');
+    font-weight: normal;
+}
+@font-face {
+    font-family: 'b-nazanin';
+    src: url("./fonts/BNazanin.woff") format('WOFF');
+    font-weight: normal;
+}
+
+#myCalendar{
+    font-family: b-nazanin !important;
+    font-size: var(--calendar-js-large-font-size);
+}
+.view,input{
+    font-family: b-nazanin !important;
+    font-size: var(--calendar-js-normal-font-size) !important;
+}
+body {    
     margin: 0;
     background-color: #FFFFFF !important;
     direction: rtl;
 }
-
+.calendar-dialog{
+    font-family: b-nazanin !important;
+    font-size: var(--calendar-js-normal-font-size) !important;
+}
+.calendar-context-menu{
+    font-family: b-nazanin !important;
+    font-size: var(--calendar-js-normal-font-size) !important;
+}
 a,
 a:visited {
     color: blue;
