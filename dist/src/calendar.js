@@ -4652,6 +4652,7 @@ if (fa) {
 
       container = !isForCustomContainer ? _element_View_FullMonth : container;
       dayStartID = isDefined(dayStartID) ? dayStartID : _element_ID_DayElement;
+      // console.log(dayStartID);
 
       if (!isForCustomContainer && _element_View_FullMonth_Rows.length > 0) {
         var rowsLength = _element_View_FullMonth_Rows.length;
@@ -4768,10 +4769,22 @@ if (fa) {
       container.appendChild(_element_View_FullMonth_TitleBar_YearSelector);
 
       if (_options.views.fullMonth.showMonthButtonsInYearDropDownMenu) {
-        for (var monthIndex = 0; monthIndex < 12; monthIndex++) {
+        for (var monthIndex = 3; monthIndex < 12; monthIndex++) {
           if (monthIndex % 3 === 0) {
             monthContainer = createElement("div", "months");
+            _element_View_FullMonth_TitleBar_YearSelector.appendChild(
+              monthContainer
+            );
+          }
 
+          buildFullMonthViewYearDropDownMonthNameButton(
+            monthContainer,
+            monthIndex
+          );
+        }
+        for (var monthIndex = 0; monthIndex < 3; monthIndex++) {
+          if (monthIndex % 3 === 0) {
+            monthContainer = createElement("div", "months");
             _element_View_FullMonth_TitleBar_YearSelector.appendChild(
               monthContainer
             );
@@ -4808,7 +4821,7 @@ if (fa) {
     ) {
       var button = createElement("div", "month-name"),
         buttonText = _options.monthNamesAbbreviated[monthNumber];
-      console.log(buttonText);
+      // console.log(buttonText);
 
       button.onclick = function (e) {
         cancelBubble(e);
@@ -4831,6 +4844,7 @@ if (fa) {
       ] = button;
     }
 
+    // title:year
     function buildFullMonthViewYearDropDownYearButton(actualYear) {
       var year = createElement("div");
       var jalaaliActualYear = toJalaali(actualYear, 1, 1);
@@ -4870,6 +4884,7 @@ if (fa) {
         );
     }
 
+    // selected title functions
     function updateFullMonthViewYearMonthSelected() {
       for (var monthNumber in _element_View_FullMonth_TitleBar_YearSelector_Contents_Months) {
         if (
@@ -7309,9 +7324,9 @@ if (fa) {
       setNodeText(menuText, text);
       menuItem.appendChild(menuText);
 
-      if (isBold) {
-        menuText.className += " bold";
-      }
+      // if (isBold) {
+      //   menuText.className += " bold";
+      // }
 
       menuItem.onclick = function () {
         onClickEvent();
@@ -8169,6 +8184,7 @@ if (fa) {
           "add-update",
           eventDialogEvent_OK
         );
+        // show cancel event
         createButtonElement(
           buttonsContainer,
           _options.cancelText,
@@ -8227,6 +8243,7 @@ if (fa) {
       _element_Dialog_EventEditor_DateFrom.onchange = isAllDayChangedEvent;
       fromSplitContainer.appendChild(_element_Dialog_EventEditor_DateFrom);
 
+      // from date
       setInputType(_element_Dialog_EventEditor_DateFrom, "date");
 
       _element_Dialog_EventEditor_TimeFrom = createElement("input");
@@ -8241,6 +8258,7 @@ if (fa) {
       _element_Dialog_EventEditor_DateTo.onchange = isAllDayChangedEvent;
       toSplitContainer.appendChild(_element_Dialog_EventEditor_DateTo);
 
+      // to date
       setInputType(_element_Dialog_EventEditor_DateTo, "date");
 
       _element_Dialog_EventEditor_TimeTo = createElement("input");
@@ -12549,8 +12567,13 @@ if (fa) {
       return [weekStartDate, weekEndDate];
     }
 
+    // days count
     function getTotalDaysInMonth(year, month) {
-      return new Date(year, month + 1, 0).getDate();
+      // return new Date(year, month + 1, 0).getDate();
+      var jDate = toJalaali(year, month + 1, 0);
+      var totalDays = jalaaliMonthLength(jDate.jy, jDate.jm);
+
+      return totalDays;
     }
 
     function getDayOrdinal(value) {
@@ -12789,6 +12812,12 @@ if (fa) {
       result = result.replace("{d}", date.getDate());
 
       result = result.replace("{o}", getDayOrdinal(date.getDate()));
+      var JYearConvert;
+      if (date.getMonth() > 2) {
+        JYearConvert = date.getFullYear() - 1;
+      } else {
+        JYearConvert = date.getFullYear();
+      }
 
       result = result.replace("{mmmm}", _options.monthNames[date.getMonth()]);
       result = result.replace(
@@ -12798,24 +12827,15 @@ if (fa) {
       result = result.replace("{mm}", padNumber(date.getMonth() + 1));
       result = result.replace("{m}", date.getMonth() + 1);
 
-      result = result.replace("{yyyy}", date.getFullYear());
-      result = result.replace(
-        "{yyy}",
-        date.getFullYear().toString().substring(1)
-      );
-      result = result.replace(
-        "{yy}",
-        date.getFullYear().toString().substring(2)
-      );
+      result = result.replace("{yyyy}", JYearConvert);
+      result = result.replace("{yyy}", JYearConvert.toString().substring(1));
+      result = result.replace("{yy}", JYearConvert.toString().substring(2));
       result = result.replace(
         "{y}",
-        parseInt(date.getFullYear().toString().substring(2)).toString()
+        parseInt(JYearConvert.toString().substring(2)).toString()
       );
-      var JDate = toJalaali(
-        date.getFullYear(),
-        date.getMonth() + 1,
-        date.getDate()
-      );
+      // نمایش تایتل
+      var JDate = toJalaali(JYearConvert, date.getMonth() + 1, date.getDate());
       result = formatJalaliDate(JDate.jy, JDate.jm);
       return result;
     }
@@ -17961,8 +17981,9 @@ if (fa) {
       );
       _options.initialDateTime = getDefaultDate(_options.initialDateTime, null);
       _options.events = getDefaultArray(_options.events, null);
+      // holiday highlight
       _options.weekendDays = isInvalidOptionArray(_options.weekendDays, 0)
-        ? [0, 6]
+        ? []
         : _options.weekendDays;
       _options.workingDays = isInvalidOptionArray(_options.workingDays, 0)
         ? []
@@ -18927,11 +18948,11 @@ if (fa) {
     }
 
     function setEventTypeTranslationStringOptions() {
-      setEventTypeOption(_options.eventTypeNormalText, "Normal", 0);
-      setEventTypeOption(_options.eventTypeMeetingText, "Meeting", 1);
-      setEventTypeOption(_options.eventTypeBirthdayText, "Birthday", 2);
-      setEventTypeOption(_options.eventTypeHolidayText, "Holiday", 3);
-      setEventTypeOption(_options.eventTypeTaskText, "Task", 4);
+      setEventTypeOption(_options.eventTypeNormalText, "عادی", 0);
+      setEventTypeOption(_options.eventTypeMeetingText, "جلسه", 1);
+      setEventTypeOption(_options.eventTypeBirthdayText, "تولد", 2);
+      setEventTypeOption(_options.eventTypeHolidayText, "آخر هفته", 3);
+      setEventTypeOption(_options.eventTypeTaskText, "فعالیت", 4);
     }
 
     function setEventTypeOption(optionEventText, defaultEventText, eventId) {
@@ -18963,68 +18984,7 @@ if (fa) {
     }
 
     function getStandardHolidays() {
-      return [
-        {
-          day: 1,
-          month: 1,
-          title: "New Year's Day",
-          onClickUrl: "https://en.wikipedia.org/wiki/New_Year%27s_Day",
-        },
-        {
-          day: 14,
-          month: 2,
-          title: "Valentine's Day",
-          onClickUrl: "https://en.wikipedia.org/wiki/Valentine%27s_Days",
-        },
-        {
-          day: 1,
-          month: 4,
-          title: "April Fools' Day",
-          onClickUrl: "https://en.wikipedia.org/wiki/April_Fools%27_Day",
-        },
-        {
-          day: 22,
-          month: 4,
-          title: "Earth Day",
-          onClickUrl: "https://en.wikipedia.org/wiki/Earth_Day",
-        },
-        {
-          day: 31,
-          month: 10,
-          title: "Halloween",
-          onClickUrl: "https://en.wikipedia.org/wiki/Halloween",
-        },
-        {
-          day: 11,
-          month: 11,
-          title: "Remembrance Day",
-          onClickUrl: "https://en.wikipedia.org/wiki/Remembrance_Day",
-        },
-        {
-          day: 24,
-          month: 12,
-          title: "Christmas Eve",
-          onClickUrl: "https://en.wikipedia.org/wiki/Christmas_Eve",
-        },
-        {
-          day: 25,
-          month: 12,
-          title: "Christmas Day",
-          onClickUrl: "https://en.wikipedia.org/wiki/Christmas",
-        },
-        {
-          day: 26,
-          month: 12,
-          title: "Boxing Day",
-          onClickUrl: "https://en.wikipedia.org/wiki/Boxing_Day",
-        },
-        {
-          day: 31,
-          month: 12,
-          title: "New Year's Eve",
-          onClickUrl: "https://en.wikipedia.org/wiki/New_Year%27s_Eve",
-        },
-      ];
+      return [];
     }
 
     /*
