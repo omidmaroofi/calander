@@ -7,9 +7,11 @@
 :root {
   --calendar-js-default-font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --calendar-js-title-bar-font-weight: 500;
-  --calendar-js-large-font-size: 0.7rem;
-  --calendar-js-small-font-size: 0.5rem;
-  --calendar-js-dark-color: #0000;
+  --calendar-js-large-font-size: 1.2rem;
+  --calendar-js-normal-font-size: 0.9rem;
+  --calendar-js-small-font-size: 0.7rem;
+  /* --calendar-js-dark-color: #000000; */
+  --calendar-js-dark-color: #9b59b6;
   --calendar-js-dark-lighter-color: #575555;
   --calendar-js-light-color: #FFFFFF;
   --calendar-js-day-date-picker-hover-color: #a7a7a7;
@@ -28,8 +30,6 @@
   --calendar-js-input-hover-color: var(--calendar-js-dark-color);
   --calendar-js-primary-button-color: var(--calendar-js-dark-color);
   --calendar-js-secondary-button-color: var(--calendar-js-dark-color);
-  /* --calendar-js-tertiary-button-color: #6c757d; */
-  /* --calendar-js-tertiary-button-color: #515151; */
   --calendar-js-tertiary-button-color: #9b59b6;
   --calendar-js-drop-down-menu-background-color: #ffffff;
   --calendar-js-title-bar-button-color: var(--calendar-js-light-color);
@@ -678,9 +678,10 @@ div.calendar div.row-cells div.cell span.blank {
     display: none;
   }
 }
-div.calendar div.row-cells div.cell:last-child {
-  border-right: none;
-}
+/* holyday border */
+/* div.calendar div.row-cells div.cell:last-child { */
+  /* border-right: none; */
+/* } */
 div.calendar div.row-cells div.cell div.ib-arrow-expand-left-right-icon::before {
   border-left-color: var(--calendar-js-dark-color);
   border-bottom-color: var(--calendar-js-dark-color);
@@ -4240,7 +4241,7 @@ div.calendar-dialog div.tab-content {
 div.calendar div.checkbox-container label.checkbox,
 div.calendar-dialog div.checkbox-container label.checkbox,
 div.calendar div.side-menu div.checkbox-container label.checkbox {
-  margin-bottom: calc(var(--calendar-js-spacing) / 2) !important;
+  margin-bottom: calc(var(--calendar-js-spacing) / 2) !important;right: 25px;
 }
 div.calendar div.checkbox-container div:last-child label.checkbox,
 div.calendar-dialog div.checkbox-container div:last-child label.checkbox,
@@ -4268,6 +4269,7 @@ div.calendar div.side-menu label.checkbox {
   cursor: default;
   display: inline-block;
   position: relative;
+  right: 25px;
   padding-left: var(--calendar-js-input-checkbox-size-with-spacing);
   padding-top: 1px;
   margin-bottom: var(--calendar-js-spacing);
@@ -4306,6 +4308,7 @@ div.calendar-dialog label.checkbox span.check-mark,
 div.calendar div.side-menu label.checkbox span.check-mark {
   position: absolute;
   top: 0;
+  right: -25px;
   left: 0;
   height: 15px;
   width: 15px;
@@ -4360,6 +4363,7 @@ div.calendar-dialog div.radio-button-container {
 div.calendar div.radio-button-container label.radio-button,
 div.calendar-dialog div.radio-button-container label.radio-button {
   -moz-user-select: none;
+  left: -25px;
   -webkit-user-select: none;
   -ms-user-select: none;
   -o-user-select: none;
@@ -4367,7 +4371,7 @@ div.calendar-dialog div.radio-button-container label.radio-button {
   cursor: default;
   display: inline-block;
   position: relative;
-  padding-left: 25px;
+  /* padding-left: 25px; */
   padding-top: 1px;
   color: var(--calendar-js-dark-color);
 }
@@ -4398,6 +4402,7 @@ div.calendar-dialog div.radio-button-container label.radio-button span.check-mar
   position: absolute;
   top: 0;
   left: 0;
+  right: -25px;
   height: 15px;
   width: 15px;
   background-color: var(--calendar-js-input-background-color);
@@ -4538,7 +4543,7 @@ div.calendar-context-menu {
   -ms-animation: fade-in-effect ease 0.5s;
   background-color: var(--calendar-js-drop-down-menu-background-color);
   border: var(--calendar-js-spacing-border-size) solid var(--calendar-js-dark-color);
-  border-left: var(--calendar-js-spacing-border-left-size) solid var(--calendar-js-dark-color);
+  border-right: var(--calendar-js-spacing-border-left-size) solid var(--calendar-js-dark-color);
   color: var(--calendar-js-dark-color);
   box-shadow: var(--calendar-js-spacing-shadow-size) var(--calendar-js-spacing-shadow-size) var(--calendar-js-spacing-shadow-size) var(--calendar-js-dark-color);
   border-radius: var(--calendar-js-border-radius);
@@ -4574,7 +4579,7 @@ div.calendar-context-menu div.ib-edit-icon {
 }
 div.calendar-context-menu div.item {
   padding: calc(var(--calendar-js-spacing) - var(--calendar-js-spacing) / 5);
-  padding-right: calc(var(--calendar-js-spacing) * 3);
+  /* padding-right: calc(var(--calendar-js-spacing) * 3); */
   transition: var(--calendar-js-transition);
 }
 div.calendar-context-menu div.item:hover {
@@ -4583,6 +4588,9 @@ div.calendar-context-menu div.item:hover {
 }
 div.calendar-context-menu div.item:hover div.ib-plus-icon::before, div.calendar-context-menu div.item:hover div.ib-plus-icon::after, div.calendar-context-menu div.item:hover div.ib-hamburger-side-icon::before, div.calendar-context-menu div.item:hover div.ib-close-icon::before, div.calendar-context-menu div.item:hover div.ib-close-icon::after, div.calendar-context-menu div.item:hover div.ib-circle-icon, div.calendar-context-menu div.item:hover div.ib-minus-icon::before, div.calendar-context-menu div.item:hover div.ib-pipe-icon::before, div.calendar-context-menu div.item:hover div.ib-equals-icon::before, div.calendar-context-menu div.item:hover div.ib-equals-icon::after, div.calendar-context-menu div.item:hover div.ib-arrow-down-full-line-icon::after, div.calendar-context-menu div.item:hover div.ib-arrow-up-full-line-share-icon::after, div.calendar-context-menu div.item:hover div.ib-edit-icon::before, div.calendar-context-menu div.item:hover div.ib-edit-icon::after {
   background-color: var(--calendar-js-light-color);
+}
+div.ib-plus-icon,div.ib-arrow-expand-left-right-icon,div.ib-hamburger-side-icon{
+  right: -10px;
 }
 div.calendar-context-menu div.item:hover div.ib-hamburger-side-icon, div.calendar-context-menu div.item:hover div.ib-arrow-expand-left-right-icon::after, div.calendar-context-menu div.item:hover div.ib-arrow-expand-left-right-icon::before, div.calendar-context-menu div.item:hover div.ib-arrow-top-right-icon, div.calendar-context-menu div.item:hover div.ib-circle-hollow-icon, div.calendar-context-menu div.item:hover div.ib-octagon-hollow-icon::before, div.calendar-context-menu div.item:hover div.ib-octagon-hollow-icon::after, div.calendar-context-menu div.item:hover div.ib-rhombus-hollow-icon::before, div.calendar-context-menu div.item:hover div.ib-arrow-up-full-line-share-icon {
   border-color: var(--calendar-js-light-color);
