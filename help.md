@@ -131,3 +131,12 @@ var formattedJalaliDate = formatJalaliDate(jalaliDate.jy, jalaliDate.jm)
 // نمایش تاریخ شمسی جلالی
 console.log(formattedJalaliDate)
 ```
+
+week end:
+
+_options.weekendDays = isInvalidOptionArray(_options.weekendDays, 0)
+        ? []
+
+نسخه قبلی که week end رو مشخص میکرد اینه:
+_options.weekendDays = isInvalidOptionArray(_options.weekendDays, 0)
+        ? [0, 6]
