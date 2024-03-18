@@ -1,80 +1,80 @@
 ```markdown
-* Build (layout, days, etc) line:448
-* Build Layout              line:467
-* Build Side-Menu           line:453
-* Build Widget Mode         line:1528
-* Build Date-Picker Mode    line:1747
+* Build (layout, days, etc)                   line:448
+* Build Layout                                line:467
+* Build Side-Menu                             line:453
+* Build Widget Mode                           line:1528
+* Build Date-Picker Mode                      line:1747
 
-* Build Document Events   line:1947
-* Full Day View           line:2381
-* Full Week View          line:3221
-* Full Month View         line:4254
-* Full Month View - Years Drop-Down Menu  line:4729
+* Build Document Events                       line:1947
+* Full Day View                               line:2381
+* Full Week View                              line:3221
+* Full Month View                             line:4254
+* Full Month View - Years Drop-Down Menu      line:4729
 
-* Full Month View - Days    line:5030
-* Full Month View - Day Events  line:5307
-* Full Year View            line:5736
-* All Events View           line:6242
-* Timeline View             line:6700
+* Full Month View - Days                      line:5030
+* Full Month View - Day Events                line:5307
+* Full Year View                              line:5736
+* All Events View                             line:6242
+* Timeline View                               line:6700
 
-* Build Context Menus       line:7300
-* Context Menu - Month Day  line:7377
-* Context Menu - Event      line:7486
-* Context Menu - Full Day   line:7824
-* Context Menu - Day Header line:7940
+* Build Context Menus                         line:7300
+* Context Menu - Month Day                    line:7377
+* Context Menu - Event                        line:7486
+* Context Menu - Full Day                     line:7824
+* Context Menu - Day Header                   line:7940
 
-* Build Disabled Background line:8040
-* Build Event Editing Dialog  line:8064
-* Build Event Editing Colors Dialog   line:9231
+* Build Disabled Background                   line:8040
+* Build Event Editing Dialog                  line:8064
+* Build Event Editing Colors Dialog           line:9231
 * Build Event Editing Repeat Options Dialog   line:9353
-* Build Message Dialog    line:9522
+* Build Message Dialog                        line:9522
 
-* Export Events Dialog    line:9630
-* Search Dialog           line:9884
-* Configuration Dialog    line:10711
-* Jump To Date Dialog     line:10948
-* Tooltip                 line:11091
+* Export Events Dialog                        line:9630
+* Search Dialog                               line:9884
+* Configuration Dialog                        line:10711
+* Jump To Date Dialog                         line:10948
+* Tooltip                                     line:11091
 
-* Notification Pop-Up     line:11335
-* Day Name Headers        line:11388
-* Views - Management      line:11508
-* Views - Management - Positioning    line:11595
-* Views - Management - Time Arrow     line:11787
+* Notification Pop-Up                         line:11335
+* Day Name Headers                            line:11388
+* Views - Management                          line:11508
+* Views - Management - Positioning            line:11595
+* Views - Management - Time Arrow             line:11787
 
-* Views - Management - Overlapping Events   line:11823
+* Views - Management - Overlapping Events     line:11823
 * Views - Management - Moving/Resizing Events line:11952
-* Full-Screen Mode        line:12096
-* Holidays                line:12178
-* Getting/Remove Events   line:12313
+* Full-Screen Mode                            line:12096
+* Holidays                                    line:12178
+* Getting/Remove Events                       line:12313
 
-* Event Types             line:12430
-* Date/Time Validation & Handling   line:12485
-* Build Date/Time Displays          line:12881
-* Drag & Drop                       line:12997
-* Moving Dialogs                    line:13314
+* Event Types                                 line:12430
+* Date/Time Validation & Handling             line:12485
+* Build Date/Time Displays                    line:12881
+* Drag & Drop                                 line:12997
+* Moving Dialogs                              line:13314
 
-* Tabs                              line:13382
-* Event Class Handling              line:13464
-* Browser Notifications             lne:13558
-* Selected, Cut, Copy, and Paste    line:13689
-* Auto-Refresh Timer                line:13908
+* Tabs                                        line:13382
+* Event Class Handling                        line:13464
+* Browser Notifications                       lne:13558
+* Selected, Cut, Copy, and Paste              line:13689
+* Auto-Refresh Timer                          line:13908
 
-* Timers                            line:13994
-* Groups                            line:14038
-* Element Handling                  line:14068
-* Build Controls/Text               line:14481
-* String Handling                   line:14591
+* Timers                                      line:13994
+* Groups                                      line:14038
+* Element Handling                            line:14068
+* Build Controls/Text                         line:14481
+* String Handling                             line:14591
 
-* Validation                        line:14661
-* Default Parameter/Option Handling line:14736
-* Local Storage (persistence)       line:14766
-* Import Events                     line:14839
-* Export Events                     line:15153
+* Validation                                  line:14661
+* Default Parameter/Option Handling           line:14736
+* Local Storage (persistence)                 line:14766
+* Import Events                               line:14839
+* Export Events                               line:15153
 
-* Exporting To CSV                  line:15580
-* Exporting To XML                  line:15643
-* Exporting To JSON                 line:15710
-* Exporting To TEXT                 line:15776
+* Exporting To CSV                            line:15580
+* Exporting To XML                            line:15643
+* Exporting To JSON                           line:15710
+* Exporting To TEXT                           line:15776
 ```
 
 
