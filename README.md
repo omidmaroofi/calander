@@ -1,3 +1,32 @@
+```markdown
+* Build (layout, days, etc) line:448
+
+* Build Layout              line:467
+
+* Build Side-Menu           line:453
+
+* Build Widget Mode         line:1528
+
+* Build Date-Picker Mode    line:1747
+
+* Build Document Events   line:1947
+
+* Full Day View           line:2381
+
+* Full Week View          line:3221
+
+* Full Month View         line:4254
+
+* Full Month View - Years Drop-Down Menu  line:4729
+
+* Full Month View - Days    line:5030
+
+* Full Month View - Day Events  line:5307
+```
+
+
+
+
 # تحلیل کدهای calendar.js
 
 نمایش تایتل تقویم (خط 12573)
