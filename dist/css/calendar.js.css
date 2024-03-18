@@ -5,11 +5,12 @@
  * Released under the MIT License
  */
 :root {
-  --calendar-js-default-font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  /* --calendar-js-default-font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; */
+  --calendar-js-default-font: b-nazanin !important;
   --calendar-js-title-bar-font-weight: 500;
   --calendar-js-large-font-size: 1.2rem;
-  --calendar-js-normal-font-size: 0.9rem;
-  --calendar-js-small-font-size: 0.7rem;
+  --calendar-js-normal-font-size: 0.73rem;
+  --calendar-js-small-font-size: 0.9rem;
   /* --calendar-js-dark-color: #000000; */
   --calendar-js-dark-color: #9b59b6;
   --calendar-js-dark-lighter-color: #575555;
@@ -4575,7 +4576,7 @@ div.calendar-context-menu div.ib-rhombus-hollow-icon,
 div.calendar-context-menu div.ib-arrow-down-full-line-icon,
 div.calendar-context-menu div.ib-arrow-up-full-line-share-icon,
 div.calendar-context-menu div.ib-edit-icon {
-  margin-right: var(--calendar-js-spacing);
+  margin-right: var(--calendar-js-spacing);right: -15px;
 }
 div.calendar-context-menu div.item {
   padding: calc(var(--calendar-js-spacing) - var(--calendar-js-spacing) / 5);
