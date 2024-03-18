@@ -4652,7 +4652,6 @@ if (fa) {
 
       container = !isForCustomContainer ? _element_View_FullMonth : container;
       dayStartID = isDefined(dayStartID) ? dayStartID : _element_ID_DayElement;
-      // console.log(dayStartID);
 
       if (!isForCustomContainer && _element_View_FullMonth_Rows.length > 0) {
         var rowsLength = _element_View_FullMonth_Rows.length;
@@ -4899,10 +4898,15 @@ if (fa) {
       }
 
       var monthNumberSelected = _calendar_CurrentDate.getMonth().toString(),
-        today = new Date();
+        today = new Date(),
+        jalalyToday = toJalaali(
+          today.getFullYear(),
+          today.getMonth(),
+          today.getDate()
+        );
 
-      if (_calendar_CurrentDate.getFullYear() === today.getFullYear()) {
-        var currentMonthNumber = today.getMonth().toString();
+      if (_calendar_CurrentDate.getFullYear() === jalalyToday.jy) {
+        var currentMonthNumber = jalalyToday.jm.toString();
 
         if (
           _element_View_FullMonth_TitleBar_YearSelector_Contents_Months.hasOwnProperty(
@@ -4925,7 +4929,6 @@ if (fa) {
         ].className = "month-name-selected";
       }
     }
-
     function updateFullMonthViewYearDropDownColors() {
       var yearSelected =
           _element_View_FullMonth_TitleBar_YearSelector.getElementsByClassName(
@@ -5142,9 +5145,13 @@ if (fa) {
       var dayElement = getElementByID(
         _element_ID_DayElement + elementDayNumber
       );
-
       if (dayElement !== null) {
         var today = new Date(),
+         emroz = toJalaali(
+          today.getFullYear(),
+          today.getMonth() + 1,
+          today.getDate()
+        ),
           dayIsToday =
             actualDay === today.getDate() &&
             year === today.getFullYear() &&
@@ -5153,6 +5160,8 @@ if (fa) {
           dayDate = new Date(year, month, actualDay),
           dayMutedClass = isMuted ? " day-muted" : _string.empty,
           allowDatePickerHoverAndSelect = true;
+      
+        console.log(emroz);
 
         includeMonthName = isDefined(includeMonthName)
           ? includeMonthName
@@ -5216,7 +5225,13 @@ if (fa) {
         dayElement.oncontextmenu = function (e) {
           showDayContextMenu(e, dayDate);
         };
-
+        // console.log(
+        //   toJalaali(
+        //     dayDate.getFullYear(),
+        //     dayDate.getMonth() + 1,
+        //     dayDate.getDate()
+        //   )
+        // );
         if (_options.showDayNumberOrdinals) {
           var ordinal = getDayOrdinal(actualDay);
 
@@ -5267,12 +5282,15 @@ if (fa) {
         if (_options.manualEditingEnabled) {
           dayElement.ondblclick = function () {
             if (_options.useTemplateWhenAddingNewEvent) {
-              var newBlankTemplateEvent = buildBlankTemplateEvent(
-                dayDate,
-                dayDate
-              );
+              // var newBlankTemplateEvent = buildBlankTemplateEvent(
+              //   dayDate,
+              //   dayDate
+              // );
 
-              showEventEditingDialog(newBlankTemplateEvent);
+              // showEventEditingDialog(newBlankTemplateEvent);
+              // showEventEditingDialogTitleSelected();
+
+              showEventEditingDialog(null, dayDate);
               showEventEditingDialogTitleSelected();
             } else {
               showEventEditingDialog(null, dayDate);
@@ -7393,12 +7411,16 @@ if (fa) {
           _options.addEventTitle + "...",
           function () {
             if (_options.useTemplateWhenAddingNewEvent) {
-              var newBlankTemplateEvent = buildBlankTemplateEvent(
-                _element_ContextMenu_Day_DateSelected,
+              // var newBlankTemplateEvent = buildBlankTemplateEvent(
+              //   _element_ContextMenu_Day_DateSelected,
+              //   _element_ContextMenu_Day_DateSelected
+              // );
+
+              // showEventEditingDialog(newBlankTemplateEvent);
+              showEventEditingDialog(
+                null,
                 _element_ContextMenu_Day_DateSelected
               );
-
-              showEventEditingDialog(newBlankTemplateEvent);
               showEventEditingDialogTitleSelected();
             } else {
               showEventEditingDialog(
@@ -7474,6 +7496,7 @@ if (fa) {
         cancelBubble(e);
         showElementAtMousePosition(e, _element_ContextMenu_Day);
       }
+      console.log(date);
     }
 
     /*
@@ -8178,12 +8201,14 @@ if (fa) {
           "remove",
           eventDialogEvent_Remove
         );
+        // show add & update event
         _element_Dialog_EventEditor_AddUpdateButton = createButtonElement(
           buttonsContainer,
           _options.addText,
           "add-update",
           eventDialogEvent_OK
         );
+
         // show cancel event
         createButtonElement(
           buttonsContainer,
@@ -8846,6 +8871,8 @@ if (fa) {
         _element_Dialog_EventEditor_EventDetails
       );
 
+      console.log(_element_Dialog_EventEditor_EventDetails);
+
       buildToolbarButton(
         _element_Dialog_EventEditor_TitleBar,
         "ib-close",
@@ -9297,6 +9324,7 @@ if (fa) {
         var buttonsContainer = createElement("div", "buttons-container");
         contents.appendChild(buttonsContainer);
 
+        // add & update event
         createButtonElement(
           buttonsContainer,
           _options.updateText,
